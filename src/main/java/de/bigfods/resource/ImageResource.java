@@ -1,9 +1,8 @@
 package de.bigfods.resource;
 
 import de.bigfods.data.Cat;
-import de.bigfods.data.Kindle;
-import de.bigfods.repository.KindleRepository;
-import de.bigfods.service.KindleService;
+import de.bigfods.data.Image;
+import de.bigfods.service.ImageService;
 import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -17,49 +16,50 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-public class KindleResource {
+public class ImageResource {
 
   @Inject
-  KindleService kindleService;
+  ImageService imageService;
 
   @GET
-  @Path("/kindles")
+  @Path("/images")
   @Produces(MediaType.APPLICATION_JSON)
-  public List<Kindle> showKindles(){
-    return kindleService.showKindles();
+  public List<Image> showImages(){
+    return imageService.showImages();
   }
 
   @GET
-  @Path("/kindle/{id}")
+  @Path("/image/{id}")
   @Produces(MediaType.APPLICATION_JSON)
-  public Kindle showKindle(@PathParam("id") long id){
-    return kindleService.showKindle(id);
+  public Image showImage(@PathParam("id") long id){
+    System.out.println("Ich werde ausgeführt");
+    return imageService.showImage(id);
   }
 
   @POST
-  @Path("/kindle")
+  @Path("/image")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   @Transactional
-  public Kindle addKindle(Kindle kindle){
-    return kindleService.addKindle(kindle);
+  public Image addImage(Image image){
+    return imageService.addImage(image);
   }
 
-  @Path("kindles/{id}")
+  @Path("image/{id}")
   @PUT
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   @Transactional
-  public Kindle updateCar(@PathParam("id") Integer id, Kindle kindle){
-    return kindleService.updateKindle(id, kindle);
+  public Image updateImage(@PathParam("id") Long id, Image image){
+    return imageService.updateImage(id, image);
   }
 
-  @Path("kindles/{id}")
+  @Path("cat/{id}")
   @DELETE
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   @Transactional
-  public boolean deleteKindle(@PathParam("id") Integer id){
-    return kindleService.deleteKindle(id);
+  public boolean deleteCat(@PathParam("id") Long id){
+    return imageService.deleteImage(id);
   }
 }

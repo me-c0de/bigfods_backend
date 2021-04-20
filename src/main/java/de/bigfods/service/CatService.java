@@ -1,17 +1,10 @@
 package de.bigfods.service;
 
 import de.bigfods.data.Cat;
-import de.bigfods.data.Kindle;
 import de.bigfods.repository.CatRepository;
-import java.io.File;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @ApplicationScoped
 public class CatService {

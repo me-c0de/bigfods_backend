@@ -11,6 +11,4 @@ public class CatRepository implements PanacheRepository<Cat> {
   public List<Cat> findAllCats(){
     return findAll().list();
   }
-
-
 }

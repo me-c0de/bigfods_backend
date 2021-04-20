@@ -14,7 +14,7 @@ You can run your application in dev mode that enables live coding using:
 ## Packaging and running the application
 
 The application can be packaged using `./gradlew quarkusBuild`.
-It produces the `bigfods-my-version-runner.jar` file in the `build` directory.
+It produces the `bigfods-my-version-runner.jar` image in the `build` directory.
 Be aware that it’s not an _über-jar_ as the dependencies are copied into the `build/lib` directory.
 
 The application is now runnable using `java -jar build/bigfods-my-version-runner.jar`.
