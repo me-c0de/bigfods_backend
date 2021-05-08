@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Information extends PanacheEntity {
+public class Information extends PanacheEntityBase {
 
   @Id
   String key;
