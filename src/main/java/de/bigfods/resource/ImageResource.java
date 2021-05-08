@@ -1,7 +1,7 @@
 package de.bigfods.resource;
 
-import de.bigfods.data.Cat;
 import de.bigfods.data.Image;
+import de.bigfods.data.MultipartBody;
 import de.bigfods.service.ImageService;
 import java.util.List;
 import javax.inject.Inject;
@@ -15,7 +15,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
+import org.jboss.resteasy.plugins.providers.multipart.MultipartInput;
 
+@Path("/api")
 public class ImageResource {
 
   @Inject
@@ -29,23 +33,22 @@ public class ImageResource {
   }
 
   @GET
-  @Path("/image/{id}")
-  @Produces(MediaType.APPLICATION_JSON)
-  public Image showImage(@PathParam("id") long id){
-    System.out.println("Ich werde ausgeführt");
-    return imageService.showImage(id);
+  @Path("cat/{id}/image")
+  @Produces(MediaType.APPLICATION_OCTET_STREAM)
+  public byte[] showImage(@PathParam("id") long id){
+    return imageService.showImage(id).data;
   }
 
   @POST
-  @Path("/image")
-  @Consumes(MediaType.APPLICATION_JSON)
+  @Path("cat/{id}/image")
+  @Consumes(MediaType.MULTIPART_FORM_DATA)
   @Produces(MediaType.APPLICATION_JSON)
   @Transactional
-  public Image addImage(Image image){
-    return imageService.addImage(image);
+  public Image addImage(@PathParam("id") Long id, @MultipartForm MultipartBody body){
+    return imageService.addImage(id, body);
   }
 
-  @Path("image/{id}")
+  @Path("cat/{id}/image/{id}")
   @PUT
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
@@ -54,12 +57,12 @@ public class ImageResource {
     return imageService.updateImage(id, image);
   }
 
-  @Path("cat/{id}")
+  @Path("image/{id}")
   @DELETE
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   @Transactional
-  public boolean deleteCat(@PathParam("id") Long id){
+  public boolean deleteImage(@PathParam("id") Long id){
     return imageService.deleteImage(id);
   }
 }

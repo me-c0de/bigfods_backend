@@ -9,10 +9,10 @@ repositories {
 }
 
 dependencies {
+    implementation 'io.quarkus:quarkus-resteasy-multipart'
     implementation 'io.quarkus:quarkus-jdbc-mysql'
     implementation 'io.quarkus:quarkus-hibernate-orm-panache'
     implementation 'io.quarkus:quarkus-hibernate-validator'
-
     implementation 'io.quarkus:quarkus-resteasy-jsonb'
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
     implementation 'io.quarkus:quarkus-resteasy'
