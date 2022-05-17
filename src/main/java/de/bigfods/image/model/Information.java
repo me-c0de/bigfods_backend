@@ -1,4 +1,4 @@
-package de.bigfods.data;
+package de.bigfods.image.model;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import javax.persistence.Entity;

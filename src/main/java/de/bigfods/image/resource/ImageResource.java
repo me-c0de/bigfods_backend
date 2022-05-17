@@ -1,8 +1,7 @@
-package de.bigfods.resource;
+package de.bigfods.image.resource;
 
-import de.bigfods.data.Image;
-import de.bigfods.data.MultipartBody;
-import de.bigfods.service.ImageService;
+import de.bigfods.image.model.Image;
+import de.bigfods.image.model.MultipartBody;
 import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -15,9 +14,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
-import org.jboss.resteasy.plugins.providers.multipart.MultipartInput;
 
 @Path("/api")
 public class ImageResource {

@@ -1,8 +1,6 @@
-package de.bigfods.resource;
+package de.bigfods.cat.resource;
 
-import de.bigfods.data.Cat;
-import de.bigfods.repository.CatRepository;
-import de.bigfods.service.CatService;
+import de.bigfods.cat.model.Cat;
 import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;

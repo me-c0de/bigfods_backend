@@ -1,4 +1,4 @@
-package de.bigfods.data;
+package de.bigfods.image.model;
 
 import java.util.Arrays;
 import javax.ws.rs.core.MediaType;

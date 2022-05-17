@@ -1,10 +1,9 @@
-package de.bigfods.data;
+package de.bigfods.image.model;
 
+import de.bigfods.cat.model.Cat;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
-import java.util.Arrays;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity

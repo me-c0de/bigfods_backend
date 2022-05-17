@@ -1,10 +1,10 @@
-package de.bigfods.service;
+package de.bigfods.image.resource;
 
-import de.bigfods.data.Cat;
-import de.bigfods.data.Image;
-import de.bigfods.data.MultipartBody;
-import de.bigfods.repository.CatRepository;
-import de.bigfods.repository.ImageRepository;
+import de.bigfods.cat.model.Cat;
+import de.bigfods.cat.repo.CatRepository;
+import de.bigfods.image.model.Image;
+import de.bigfods.image.model.MultipartBody;
+import de.bigfods.image.repo.ImageRepository;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
