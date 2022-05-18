@@ -8,7 +8,7 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class ImageRepository implements PanacheRepository<Image> {
 
-  public List<Image> findAllCats(){
+  public List<Image> findAllCatImages(){
     return findAll().list();
   }
 }

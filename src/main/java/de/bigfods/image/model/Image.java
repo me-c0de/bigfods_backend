@@ -14,7 +14,7 @@ public class Image extends PanacheEntity {
   @Column(name = "data", length = 100000)
   public byte[] data;
   @OneToOne
-  Cat cat;
+  public Cat cat;
 
 
   public void setData(byte[] data) {
@@ -25,5 +25,11 @@ public class Image extends PanacheEntity {
     this.cat = cat;
   }
 
+  public byte[] getData() {
+    return data;
+  }
 
+  public Cat getCat() {
+    return cat;
+  }
 }

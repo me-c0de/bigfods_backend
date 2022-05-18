@@ -22,14 +22,6 @@ public class CatResource {
 
 
     @GET
-    @Path("/hello")
-    @Produces(MediaType.APPLICATION_JSON)
-    public String hello(){
-        return "hello";
-    }
-
-
-    @GET
     @Path("/cats")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Cat> showCats(){
@@ -37,7 +29,7 @@ public class CatResource {
     }
 
     @GET
-    @Path("/cat/{id}")
+    @Path("/cats/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Cat showCats(@PathParam("id") long id){
         System.out.println("Ich werde ausgeführt");
@@ -45,7 +37,7 @@ public class CatResource {
     }
 
     @POST
-    @Path("/cat")
+    @Path("/cats")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
@@ -53,7 +45,7 @@ public class CatResource {
         return catService.addCat(cat);
     }
 
-    @Path("cat/{id}")
+    @Path("cats/{id}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -62,7 +54,7 @@ public class CatResource {
         return catService.updateCat(id, cat);
     }
 
-    @Path("cat/{id}")
+    @Path("cats/{id}")
     @DELETE
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)

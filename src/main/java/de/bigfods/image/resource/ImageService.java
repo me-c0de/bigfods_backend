@@ -12,6 +12,7 @@ import javax.inject.Inject;
 @ApplicationScoped
 public class ImageService {
 
+
   @Inject
   ImageRepository imageRepository;
 
@@ -24,22 +25,46 @@ public class ImageService {
   }
 
   public List<Image> showImages() {
-    return imageRepository.findAllCats();
+    return imageRepository.findAllCatImages();
   }
 
-  public Image updateImage(Long id, Image image) {
-    imageRepository.update("SELECT * FROM cat WHERE id = " + id, image);
+  public Image updateImage(Long id, MultipartBody body) {
+
+    System.out.println("executed");
+    Image image = imageRepository.findById(id);
+
+    if(image == null){
+      image = new Image();
+    }
+
+    if(body != null){
+      image.setData(body.getImage());
+    }
+
+    imageRepository.persist(image);
+
     return image;
   }
 
   public Image addImage(Long id, MultipartBody body) {
+
+    Cat cat = catRepository.findById(id);
+
+    if(cat == null){
+      return null; //Todo: Response
+    }
+
+    if(body == null){
+     return null; //Todo: Response
+    }
+
     Image image = new Image();
     image.setData(body.getImage());
-    Cat cat = catRepository.findById(id);
-    image.setCat(cat);
+
     imageRepository.persist(image);
+
     cat.setImage(image);
-    catRepository.persist(cat);
+
     return image;
   }
 
@@ -47,4 +72,6 @@ public class ImageService {
     imageRepository.deleteById(id);
     return true;
   }
+
+
 }

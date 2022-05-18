@@ -8,7 +8,6 @@ import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -23,43 +22,30 @@ public class ImageResource {
   ImageService imageService;
 
   @GET
-  @Path("/images")
+  @Path("images")
   @Produces(MediaType.APPLICATION_JSON)
   public List<Image> showImages(){
     return imageService.showImages();
   }
 
-  @GET
-  @Path("cat/{id}/image")
-  @Produces(MediaType.APPLICATION_OCTET_STREAM)
-  public byte[] showImage(@PathParam("id") long id){
-    return imageService.showImage(id).data;
-  }
 
-  @POST
-  @Path("cat/{id}/image")
+  @Path("images/{imageId}")
+  @PUT
   @Consumes(MediaType.MULTIPART_FORM_DATA)
   @Produces(MediaType.APPLICATION_JSON)
   @Transactional
-  public Image addImage(@PathParam("id") Long id, @MultipartForm MultipartBody body){
-    return imageService.addImage(id, body);
+  public Image updateImage(@PathParam("imageId") Long id, @MultipartForm MultipartBody body){
+    System.out.println("executed");
+    return imageService.updateImage(id, body);
   }
 
-  @Path("cat/{id}/image/{id}")
-  @PUT
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(MediaType.APPLICATION_JSON)
-  @Transactional
-  public Image updateImage(@PathParam("id") Long id, Image image){
-    return imageService.updateImage(id, image);
-  }
-
-  @Path("image/{id}")
+  @Path("images/{imageId}")
   @DELETE
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   @Transactional
-  public boolean deleteImage(@PathParam("id") Long id){
+  public boolean deleteImage(@PathParam("imageId") Long id){
     return imageService.deleteImage(id);
   }
+
 }

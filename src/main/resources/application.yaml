@@ -1,4 +1,8 @@
 quarkus:
+
+  http:
+    cors: true
+
   hibernate-orm:
     database:
       generation: drop-and-create
@@ -7,7 +11,8 @@ quarkus:
     db-kind: mysql
     username: root
     password: root
+    jdbc:
+      url: jdbc:mysql://localhost:3308/bigfods
 
-  http:
-    cors: true
+
 

@@ -2,6 +2,7 @@ package de.bigfods.cat.resource;
 
 import de.bigfods.cat.model.Cat;
 import de.bigfods.cat.repo.CatRepository;
+import de.bigfods.image.model.Image;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -20,9 +21,17 @@ public class CatService {
     return catRepository.findAllCats();
   }
 
-  public Cat updateCat(Long id, Cat cat) {
-    catRepository.update("SELECT * FROM cat WHERE id = " + id, cat);
-    return cat;
+  public Cat updateCat(Long id, Cat newCat) {
+    Cat oldCat = catRepository.findById(id);
+
+    if(oldCat == null || newCat == null ){
+      return null;
+    }
+
+    oldCat.setName(newCat.getName());
+    oldCat.setDescription(newCat.getDescription());
+
+    return oldCat;
   }
 
   public Cat addCat(Cat cat) {
