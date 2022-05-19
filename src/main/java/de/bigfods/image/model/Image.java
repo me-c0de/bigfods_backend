@@ -5,7 +5,13 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 public class Image extends PanacheEntity {
 
@@ -16,20 +22,4 @@ public class Image extends PanacheEntity {
   @OneToOne
   public Cat cat;
 
-
-  public void setData(byte[] data) {
-    this.data = data;
-  }
-
-  public void setCat(Cat cat) {
-    this.cat = cat;
-  }
-
-  public byte[] getData() {
-    return data;
-  }
-
-  public Cat getCat() {
-    return cat;
-  }
 }
