@@ -5,11 +5,12 @@ import de.bigfods.cat.repo.CatRepository;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor
 @ApplicationScoped
 public class CatService {
 
-  @Inject
   CatRepository catRepository;
 
   public Cat showCat(Long id) {
