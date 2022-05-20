@@ -14,5 +14,16 @@ quarkus:
     jdbc:
       url: jdbc:mysql://localhost:3308/bigfods
 
+mp:
+  jwt:
+    verify:
+      publicKey: publicKey.pem
+      issuer:
+
+smallrye:
+  jwt:
+    sign:
+      key:
+        location: privateKey.pem
 
 

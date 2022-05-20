@@ -10,7 +10,7 @@ import org.eclipse.microprofile.jwt.Claims;
 public class TokenService {
 
   public String generateToken(){
-    return Jwt.issuer("BigFods")
+    return Jwt.issuer("bigfods")
             .upn("bigfods@bigfods.de")
             .claim(Claims.birthdate.name(), "2001-07-13")
             .sign();

@@ -1,6 +1,7 @@
 package de.bigfods.user.resource;
 
 import de.bigfods.user.model.User;
+import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -16,6 +17,7 @@ public class UserResource {
 
   @POST
   @Path("/registration")
+  @Transactional
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public User register(User user) {
