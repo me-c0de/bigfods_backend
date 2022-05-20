@@ -15,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-@Path("/api/notifcations/")
+@Path("/api/notifications/")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class NotificationResource {
@@ -50,6 +50,7 @@ public class NotificationResource {
   @DELETE
   @Transactional
   public boolean deleteNotification(@PathParam("notificationId") Long id){
+    System.out.println("executed");
     return notificationService.deleteNotification(id);
   }
 }

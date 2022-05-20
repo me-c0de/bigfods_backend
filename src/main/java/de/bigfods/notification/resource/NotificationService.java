@@ -1,7 +1,9 @@
 package de.bigfods.notification.resource;
 
+import com.google.common.base.Strings;
 import de.bigfods.notification.model.Notification;
 import de.bigfods.notification.repository.NotificationRepository;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -31,8 +33,16 @@ public class NotificationService {
 
     Notification notification = noticationOpt.get();
 
-    notification.setMessage(newNotification.getMessage());
-    notification.setSubject(newNotification.getSubject());
+    if(!Strings.isNullOrEmpty(newNotification.getMessage())){
+      notification.setMessage(newNotification.getMessage());
+    }
+
+    if(!Strings.isNullOrEmpty(newNotification.getSubject())){
+      notification.setSubject(newNotification.getSubject());
+    }
+
+    notification.setDate(LocalDateTime.now());
+
     //Todo: Add possibility to change image icon;
 
     return notification;
@@ -44,7 +54,7 @@ public class NotificationService {
     return notification ;
   }
 
-  public boolean deleteNotification(Long id) {
-    return true;
+  public boolean deleteNotification(Long notificationId) {
+    return notificationRepository.deleteById(notificationId);
   }
 }
