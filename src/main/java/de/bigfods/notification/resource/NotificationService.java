@@ -6,11 +6,13 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.enterprise.context.RequestScoped;
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor
 @RequestScoped
 public class NotificationService {
 
-  NotificationRepository notificationRepository;
+  private final NotificationRepository notificationRepository;
 
   public Notification showNotification(Long id) {
     return notificationRepository.findById(id);

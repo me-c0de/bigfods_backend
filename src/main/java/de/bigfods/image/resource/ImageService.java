@@ -8,16 +8,14 @@ import de.bigfods.image.repo.ImageRepository;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor
 @ApplicationScoped
 public class ImageService {
 
-
-  @Inject
-  ImageRepository imageRepository;
-
-  @Inject
-  CatRepository catRepository;
+  private final ImageRepository imageRepository;
+  private final CatRepository catRepository;
 
   public Image showImage(Long id) {
     Cat cat = catRepository.findById(id);

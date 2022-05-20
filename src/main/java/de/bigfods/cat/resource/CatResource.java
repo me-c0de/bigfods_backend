@@ -19,8 +19,7 @@ import lombok.AllArgsConstructor;
 @Path("/api")
 public class CatResource {
 
-    CatService catService;
-
+    private final CatService catService;
 
     @GET
     @Path("/cats")

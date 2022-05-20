@@ -11,13 +11,14 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import lombok.AllArgsConstructor;
 import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
 
+@AllArgsConstructor
 @Path("/api")
 public class CatImageResource {
 
-  @Inject
-  ImageService imageService;
+  private final ImageService imageService;
 
   @GET
   @Path("cats/{id}/images")
@@ -35,11 +36,3 @@ public class CatImageResource {
     return imageService.addImage(catId, body);
   }
 }
-
-/*
- Image image = imageService.showImage(id);
-
-    URI uri = UriBuilder.fromUri("cats/" + id + "/images/" + image.id).build();
-
-    return Response.created(uri).entity(image.getData()).build();
- */

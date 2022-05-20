@@ -15,12 +15,5 @@ public class Notification extends PanacheEntity {
 
   private String subject;
   private String message;
-  private LocalDateTime date;
-
- /* @OneToOne
-  @Cascade(CascadeType.ALL)
-  private Image image;
-
-
-  */
+  private LocalDateTime date = LocalDateTime.now();
 }

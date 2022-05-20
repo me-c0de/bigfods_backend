@@ -20,7 +20,7 @@ import lombok.AllArgsConstructor;
 @Produces(MediaType.APPLICATION_JSON)
 public class NotificationResource {
 
-  private NotificationService notificationService;
+  private final NotificationService notificationService;
 
   @GET
   public List<Notification> showNotifications(){

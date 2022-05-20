@@ -11,7 +11,7 @@ import lombok.AllArgsConstructor;
 @ApplicationScoped
 public class CatService {
 
-  CatRepository catRepository;
+  private final CatRepository catRepository;
 
   public Cat showCat(Long id) {
     return catRepository.findById(id);
