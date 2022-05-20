@@ -2,7 +2,6 @@ package de.bigfods.cat.resource;
 
 import de.bigfods.cat.model.Cat;
 import de.bigfods.cat.repo.CatRepository;
-import de.bigfods.image.model.Image;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

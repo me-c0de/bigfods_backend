@@ -17,10 +17,10 @@ import org.hibernate.annotations.CascadeType;
 @Entity
 public class Cat extends PanacheEntity {
 
-  public String name;
-  public String description;
+  private String name;
+  private String description;
 
   @OneToOne
   @Cascade(CascadeType.ALL)
-  public Image profile;
+  private Image image;
 }

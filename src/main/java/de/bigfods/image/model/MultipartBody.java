@@ -1,6 +1,5 @@
 package de.bigfods.image.model;
 
-import java.util.Arrays;
 import javax.ws.rs.core.MediaType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

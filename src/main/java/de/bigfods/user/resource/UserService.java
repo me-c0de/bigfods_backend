@@ -33,7 +33,7 @@ public class UserService {
     Optional<User> registeredUser = userRepository
         .findByUsername(user.getUsername());
 
-    if(registeredUser.isPresent() || !user.getPassword().equals(registeredUser.get().getPassword())) {
+    if(registeredUser.isEmpty() || !user.getPassword().equals(registeredUser.get().getPassword())) {
       throw new WebApplicationException(Response.status(404).entity("No user found or password is incorrect").build());
     }
     return tokenService.generateToken();
