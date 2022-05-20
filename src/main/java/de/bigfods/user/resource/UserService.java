@@ -3,11 +3,13 @@ package de.bigfods.user.resource;
 import de.bigfods.user.model.User;
 import de.bigfods.user.repository.UserRepository;
 import java.util.Optional;
+import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
+@RequestScoped
 public class UserService {
 
   private final UserRepository userRepository;
