@@ -13,10 +13,8 @@ public class TokenService {
 
   public String generateToken(User user) {
     String token = Jwt
-        .subject(user.getUsername())
+        .subject("Admin - Verification")
         .upn(user.getUsername())
-        .groups("admin")
-        .expiresIn(86400L)
         .sign();
     return token;
   }

@@ -54,7 +54,6 @@ public class NotificationResource {
   @Transactional
   @Authenticated
   public boolean deleteNotification(@PathParam("notificationId") Long id){
-    System.out.println("executed");
     return notificationService.deleteNotification(id);
   }
 }
