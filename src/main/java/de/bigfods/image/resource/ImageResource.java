@@ -2,6 +2,7 @@ package de.bigfods.image.resource;
 
 import de.bigfods.image.model.Image;
 import de.bigfods.image.model.MultipartBody;
+import io.quarkus.security.Authenticated;
 import java.util.List;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
@@ -16,13 +17,15 @@ import lombok.AllArgsConstructor;
 import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
 
 @AllArgsConstructor
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 @Path("/api")
 public class ImageResource {
   private final ImageService imageService;
 
   @GET
   @Path("images")
-  @Produces(MediaType.APPLICATION_JSON)
+  @Authenticated
   public List<Image> showImages(){
     return imageService.showImages();
   }
@@ -30,8 +33,8 @@ public class ImageResource {
   @Path("images/{imageId}")
   @PUT
   @Consumes(MediaType.MULTIPART_FORM_DATA)
-  @Produces(MediaType.APPLICATION_JSON)
   @Transactional
+  @Authenticated
   public Image updateImage(@PathParam("imageId") Long id, @MultipartForm MultipartBody body){
     System.out.println("executed");
     return imageService.updateImage(id, body);
@@ -39,9 +42,8 @@ public class ImageResource {
 
   @Path("images/{imageId}")
   @DELETE
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(MediaType.APPLICATION_JSON)
   @Transactional
+  @Authenticated
   public boolean deleteImage(@PathParam("imageId") Long id){
     return imageService.deleteImage(id);
   }

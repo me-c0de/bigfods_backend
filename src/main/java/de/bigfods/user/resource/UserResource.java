@@ -30,7 +30,6 @@ public class UserResource {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.TEXT_PLAIN)
   public String login(User user) {
-    System.out.println(userService.login(user));
     return userService.login(user);
   }
 }

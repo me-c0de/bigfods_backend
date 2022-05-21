@@ -2,6 +2,7 @@ package de.bigfods.image.resource;
 
 import de.bigfods.image.model.Image;
 import de.bigfods.image.model.MultipartBody;
+import io.quarkus.security.Authenticated;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
@@ -23,6 +24,7 @@ public class CatImageResource {
   @GET
   @Path("cats/{id}/images")
   @Produces(MediaType.APPLICATION_OCTET_STREAM)
+  @Authenticated
   public byte[] showImage(@PathParam("id") long id){
     return imageService.showImage(id).getData();
   }
@@ -32,6 +34,7 @@ public class CatImageResource {
   @Consumes(MediaType.MULTIPART_FORM_DATA)
   @Produces(MediaType.APPLICATION_JSON)
   @Transactional
+  @Authenticated
   public Image addImage(@PathParam("catId") Long catId, @MultipartForm MultipartBody body){
     return imageService.addImage(catId, body);
   }

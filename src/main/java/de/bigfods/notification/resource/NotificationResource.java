@@ -1,7 +1,8 @@
 package de.bigfods.notification.resource;
 
-import de.bigfods.notification.model.Notification;
+import de.bigfods.notification.model.Notification;import io.quarkus.security.Authenticated;
 import java.util.List;
+import javax.annotation.security.RolesAllowed;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -15,9 +16,9 @@ import javax.ws.rs.core.MediaType;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-@Path("/api/notifications/")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@Path("/api/notifications/")
 public class NotificationResource {
 
   private final NotificationService notificationService;
@@ -35,6 +36,7 @@ public class NotificationResource {
 
   @POST
   @Transactional
+  @Authenticated
   public Notification addNotifications(Notification notification){
     return notificationService.addNotification(notification);
   }
@@ -42,6 +44,7 @@ public class NotificationResource {
   @Path("{notificationId}")
   @PUT
   @Transactional
+  @Authenticated
   public Notification updateNotification(@PathParam("notificationId") Long id, Notification notification){
     return notificationService.updateNotifications(id, notification);
   }
@@ -49,6 +52,7 @@ public class NotificationResource {
   @Path("{notificationId}")
   @DELETE
   @Transactional
+  @Authenticated
   public boolean deleteNotification(@PathParam("notificationId") Long id){
     System.out.println("executed");
     return notificationService.deleteNotification(id);

@@ -14,16 +14,19 @@ quarkus:
     jdbc:
       url: jdbc:mysql://localhost:3308/bigfods
 
+  smallrye-jwt:
+    enabled: true
+
 mp:
   jwt:
     verify:
-      publicKey: publicKey.pem
-      issuer:
+      publickey:
+        location: publicKey.pem
+      issuer: "http://localhost:8080/api/login"
 
 smallrye:
   jwt:
     sign:
-      key:
-        location: privateKey.pem
+      key: privateKey.pem
 
 

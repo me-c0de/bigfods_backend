@@ -1,6 +1,7 @@
 package de.bigfods.cat.resource;
 
 import de.bigfods.cat.model.Cat;
+import io.quarkus.security.Authenticated;
 import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -17,20 +18,20 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @Path("/api")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class CatResource {
 
     private final CatService catService;
 
     @GET
     @Path("/cats")
-    @Produces(MediaType.APPLICATION_JSON)
     public List<Cat> showCats(){
         return catService.showCats();
     }
 
     @GET
     @Path("/cats/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
     public Cat showCats(@PathParam("id") long id){
         System.out.println("Ich werde ausgeführt");
         return catService.showCat(id);
@@ -38,27 +39,24 @@ public class CatResource {
 
     @POST
     @Path("/cats")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
     @Transactional
+    @Authenticated
     public Cat addCat(Cat cat){
         return catService.addCat(cat);
     }
 
     @Path("cats/{id}")
     @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
     @Transactional
+    @Authenticated
     public Cat updateCat(@PathParam("id") Long id, Cat cat){
         return catService.updateCat(id, cat);
     }
 
     @Path("cats/{id}")
     @DELETE
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
     @Transactional
+    @Authenticated
     public boolean deleteCat(@PathParam("id") Long id){
         return catService.deleteCat(id);
     }
