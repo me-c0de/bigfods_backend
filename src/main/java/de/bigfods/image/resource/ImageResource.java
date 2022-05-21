@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -23,11 +24,28 @@ import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
 public class ImageResource {
   private final ImageService imageService;
 
+
+  @POST
+  @Path("images")
+  @Consumes(MediaType.MULTIPART_FORM_DATA)
+  @Transactional
+  @Authenticated
+  public Image addImage(@MultipartForm MultipartBody body){
+    return imageService.addImage(body);
+  }
   @GET
   @Path("images")
   @Authenticated
   public List<Image> showImages(){
     return imageService.showImages();
+  }
+
+  @GET
+  @Path("images/{imageId}")
+  @Produces(MediaType.APPLICATION_OCTET_STREAM)
+  @Authenticated
+  public byte[] showImage(@PathParam("imageId") long id){
+    return imageService.showImage(id).getData();
   }
 
   @Path("images/{imageId}")

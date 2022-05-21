@@ -15,11 +15,6 @@ import lombok.Setter;
 @Entity
 public class Image extends PanacheEntity {
 
-  //image bytes can have large lengths so we specify a value
-  //which is more than the default length for picByte column
   @Column(name = "data", length = 100000)
   public byte[] data;
-  @OneToOne
-  public Cat cat;
-
 }

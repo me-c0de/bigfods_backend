@@ -18,8 +18,7 @@ public class ImageService {
   private final CatRepository catRepository;
 
   public Image showImage(Long id) {
-    Cat cat = catRepository.findById(id);
-    return cat.getImage();
+    return imageRepository.findById(id);
   }
 
   public List<Image> showImages() {
@@ -44,13 +43,7 @@ public class ImageService {
     return image;
   }
 
-  public Image addImage(Long id, MultipartBody body) {
-
-    Cat cat = catRepository.findById(id);
-
-    if(cat == null){
-      return null; //Todo: Response
-    }
+  public Image addImage(MultipartBody body) {
 
     if(body == null){
      return null; //Todo: Response
@@ -60,8 +53,6 @@ public class ImageService {
     image.setData(body.getImage());
 
     imageRepository.persist(image);
-
-    cat.setImage(image);
 
     return image;
   }
